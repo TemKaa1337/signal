@@ -7,6 +7,6 @@ CODEOWNERS export-ignore
 phpmd.xml export-ignore
 psalm.xml export-ignore
 phpunit.xml export-ignore
-infection.json5 export-ignore
-docs export-ignore
-examples export-ignore
+Makefile export-ignore
+Dockerfile export-ignore
+docker-compose.yaml export-ignore

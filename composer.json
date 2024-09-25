@@ -1,12 +1,14 @@
 {
-    "name": "temkaa/{TEMPLATE}",
-    "description": "{TEMPLATE}",
+    "name": "temkaa/signal",
+    "description": "A simple library for subscribing to PHP signals",
     "type": "library",
     "license": "MIT",
-    "keywords": ["{TEMPLATE}"],
+    "keywords": [
+        "signal"
+    ],
     "autoload": {
         "psr-4": {
-            "Temkaa\\{TEMPLATE}\\": "src/",
+            "Temkaa\\Signal\\": "src/",
             "Tests\\": "tests/"
         }
     },
@@ -17,42 +19,19 @@
         }
     ],
     "require": {
-        "php": "^8.3"
+        "php": "^8.3",
+        "psr/log": "^3.0"
     },
     "require-dev": {
+        "ext-posix": "*",
         "vimeo/psalm": "^5.26",
         "phpunit/phpunit": "^10.5",
-        "phpmd/phpmd": "^2.15",
-        "infection/infection": "^0.27.11",
-        "rregeer/phpunit-coverage-check": "^0.3.1"
-    },
-    "config": {
-        "allow-plugins": {
-            "infection/extension-installer": true
-        }
+        "phpmd/phpmd": "^2.15"
     },
     "scripts": {
-        "print-coverage": [
-            "@putenv XDEBUG_MODE=coverage",
-            "./vendor/bin/phpunit -c phpunit.xml --coverage-text"
-        ],
-        "coverage": [
-            "@putenv XDEBUG_MODE=coverage",
-            "./vendor/bin/phpunit -c phpunit.xml --coverage-clover clover.xml",
-            "./vendor/bin/coverage-check clover.xml 100"
-        ],
         "phpmd": "./vendor/bin/phpmd src/ text phpmd.xml",
         "psalm": "./vendor/bin/psalm -c psalm.xml --no-cache",
         "tests": "./vendor/bin/phpunit -c phpunit.xml",
-        "bench": "./vendor/bin/phpbench run --config=phpbench.json",
-        "infection": "./vendor/bin/infection --threads=4",
-        "test-all": [
-            "composer phpmd",
-            "composer psalm",
-            "composer tests",
-            "composer infection",
-            "composer bench",
-            "composer coverage"
-        ]
+        "test-all": ["@phpmd", "@psalm", "@tests"]
     }
 }

@@ -29,7 +29,7 @@ final class SignalManager implements SignalManagerInterface
         if (PHP_OS_FAMILY === 'Windows') {
             $this->windowsHandler = $this->handleSignal(...);
 
-            /** @psalm-suppress UnusedFunctionCall */
+            /** @psalm-suppress UndefinedFunction, UnusedFunctionCall */
             sapi_windows_set_ctrl_handler($this->windowsHandler);
         } else {
             pcntl_async_signals(true);
@@ -39,7 +39,7 @@ final class SignalManager implements SignalManagerInterface
     public function __destruct()
     {
         if (PHP_OS_FAMILY === 'Windows') {
-            /** @psalm-suppress UnusedFunctionCall */
+            /** @psalm-suppress UndefinedFunction, UnusedFunctionCall */
             sapi_windows_set_ctrl_handler($this->windowsHandler, false);
 
             $this->windowsHandler = null;
